@@ -21,7 +21,7 @@ public class UserController {
      */
     @PostMapping("/add")
     public ResponseEntity<Long> addUser(@Valid @RequestBody UserDto userDto) {
-        UserDto user = userService.saveUser(userDto);
+        UserDto user = userService.addUser(userDto);
         return new ResponseEntity<>(user.getId(), HttpStatus.CREATED);
     }
 

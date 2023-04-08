@@ -10,6 +10,7 @@ import com.test.mapper.UserMapper;
 import com.test.model.repository.UserRepository;
 import com.test.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,14 +27,13 @@ public class UserServiceImpl implements UserService {
         return userMapper.listToDto(userRepository.findAll());
     }
 
+    /**
+     добавлена "заглушка” с имитацией обращения и задержкой по времени 5 секунд
+     */
+    @SneakyThrows
     @Override
-    public UserDto saveUser(UserDto userDto) {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
+    public UserDto addUser(UserDto userDto) {
+        Thread.sleep(5000);
         UserDto user = userMapper.toDto(userRepository.findByEmail(userDto.getEmail()));
         if (user == null) {
             return userMapper.toDto(userRepository.save(userMapper.toEntity(userDto)));
@@ -42,8 +42,17 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    public UserDto saveUser(UserDto userDto) {
+        return userMapper.toDto(userRepository.save(userMapper.toEntity(userDto)));
+    }
+
+    /**
+     добавлена "заглушка” с имитацией обращения и задержкой по времени 5 секунд
+     */
+    @SneakyThrows
     @Override
     public UserDto findById(Long id) {
+        Thread.sleep(5000);
         return userMapper.toDto(userRepository.findById(id).orElseThrow(() ->
                 new UserNotFoundException("User with id " + id + " is not found.")));
     }

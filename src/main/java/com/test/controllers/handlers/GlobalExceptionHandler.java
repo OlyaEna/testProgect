@@ -1,4 +1,4 @@
-package com.test.controllers;
+package com.test.controllers.handlers;
 
 import com.test.exceptions.ExceptionResponse;
 import com.test.exceptions.InvalidStatusException;

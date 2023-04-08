@@ -1,4 +1,4 @@
-package com.test.controllers;
+package com.test.controllers.handlers;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
